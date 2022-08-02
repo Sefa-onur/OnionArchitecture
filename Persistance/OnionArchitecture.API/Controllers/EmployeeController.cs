@@ -43,9 +43,9 @@ namespace OnionArchitecture.API.Controllers
             }
         }
         [HttpGet("GetSingleAsync/{Name}")]
-        public async Task<IActionResult> GetSingleAsync(string name)
+        public async Task<IActionResult> GetSingleAsync(string Name)
         {
-            var query = await _employeeRead.GetSingleAsync(item => item.Name.ToLower() == name.ToLower());
+            var query = await _employeeRead.GetSingleAsync(item => item.Name.ToLower() == Name.ToLower());
             if( query != null)
             {
                 return Ok(query);
