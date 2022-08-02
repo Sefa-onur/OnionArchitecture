@@ -18,7 +18,7 @@ namespace OnionArchitecture.API.Controllers
             _employeeWrite = employeeWrite;
         }
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll(bool tracking = false)
         {
             var query = _employeeRead.GetAll();
             if(query != null)
@@ -30,7 +30,7 @@ namespace OnionArchitecture.API.Controllers
             }
         }
         [HttpGet("GetByIDAsync/{ID}")]
-        public async Task<IActionResult> GetbyIDAsync(string ID)
+        public async Task<IActionResult> GetbyIDAsync(string ID,bool tracking = false)
         {
             var query = await _employeeRead.GetbyIDAsync(ID);
             if(query != null)
@@ -43,7 +43,7 @@ namespace OnionArchitecture.API.Controllers
             }
         }
         [HttpGet("GetSingleAsync/{Name}")]
-        public async Task<IActionResult> GetSingleAsync(string Name)
+        public async Task<IActionResult> GetSingleAsync(string Name, bool tracking = false)
         {
             var query = await _employeeRead.GetSingleAsync(item => item.Name.ToLower() == Name.ToLower());
             if( query != null)
