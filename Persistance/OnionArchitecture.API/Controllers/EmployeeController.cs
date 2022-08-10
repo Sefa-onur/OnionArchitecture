@@ -1,4 +1,5 @@
 ﻿using Application.Repostories.EmployeeRepository;
+using Application.ViewModels;
 using Domain;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,31 +30,25 @@ namespace OnionArchitecture.API.Controllers
                 return BadRequest();
             }
         }
-        [HttpGet("GetByIDAsync/{ID}")]
-        public async Task<IActionResult> GetbyIDAsync(string ID,bool tracking = false)
+        [HttpPost]
+        public async Task<ActionResult> Post(VM_CreateEmployee emp)
         {
-            var query = await _employeeRead.GetbyIDAsync(ID);
-            if(query != null)
+            if (!ModelState.IsValid)
             {
-                return Ok(query);
+                return BadRequest(emp);
             }
             else
             {
-                return NotFound();
-            }
+                await _employeeWrite.AddAsync(new()
+                {
+                    Name = emp.Name,
+                    Surname = emp.Surname,
+                    Position = emp.Position
+                });
+                await _employeeWrite.SaveAsync();
+                return Ok(true);
+            }            
         }
-        [HttpGet("GetSingleAsync/{Name}")]
-        public async Task<IActionResult> GetSingleAsync(string Name, bool tracking = false)
-        {
-            var query = await _employeeRead.GetSingleAsync(item => item.Name.ToLower() == Name.ToLower());
-            if( query != null)
-            {
-                return Ok(query);
-            }
-            else
-            {
-                return NotFound();
-            }
-        }
+        
     }
 }
