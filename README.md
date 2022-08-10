@@ -7,3 +7,4 @@ Bu projenin amacı Onion mimarisine uygun bir şekilde, solid prensipleri ile be
 *Onion mimarisin de katmanların yüklendiği görevler ve mimarinin genel yapısı inşa edilmiştir.<br/>
 *Proje code first yaklaşımı ile inşa edilmeye devam ediyor.<br/>
 *Entity Framework özellikleri detaylı bir şekilde kullanımı devam etmektedir.<br/>
+*FluentValidation ile veri filtreleme işlemi yapılıyor.<br/>
